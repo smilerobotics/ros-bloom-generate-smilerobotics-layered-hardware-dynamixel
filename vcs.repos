@@ -1,0 +1,13 @@
+repositories:
+  layered_hardware:
+    type: git
+    url: https://github.com/yoshito-n-students/layered_hardware
+    version: master
+  layered_hardware_dynamixel:
+    type: git
+    url: https://github.com/smilerobotics/layered_hardware_dynamixel
+    version: master
+  ros_control_extensions:
+    type: git
+    url: https://github.com/smilerobotics/ros_control_extensions.git
+    version: devel

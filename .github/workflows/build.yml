@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        ROS_DISTRO: ["melodic", "noetic"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: smilerobotics/actions-ros-bloom-generate@v1
+        with:
+          repository_type: vcs
+          vcs_setting_file: ./vcs.repos
+          targets: ./ros_control_extensions/hardware_interface_extensions ./layered_hardware ./ros_control_extensions/transmission_interface_extensions ./ros_control_extensions/joint_limits_interface_extensions ./ros_control_extensions/ros_control_extensions ./layered_hardware_dynamixel
+          ros_distro: ${{ matrix.ROS_DISTRO }}
+          name_prefix: ${{ matrix.ROS_DISTRO }}-
